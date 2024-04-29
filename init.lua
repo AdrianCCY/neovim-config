@@ -224,7 +224,7 @@ require('lazy').setup({
       vim.keymap.set('n', '<C-n>', function()
         harpoon:list():select(3)
       end)
-      vim.keymap.set('n', '<C-s>', function()
+      vim.keymap.set('n', '<C-m>', function()
         harpoon:list():select(4)
       end)
       vim.keymap.set('n', '<leader><C-h>', function()
