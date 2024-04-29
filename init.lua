@@ -73,7 +73,7 @@ vim.opt.scrolloff = 10
 vim.keymap.set('i', '<C-s>', '<cmd>:w<CR><Esc>')
 vim.keymap.set('n', '<C-s>', '<cmd>:w<CR>')
 vim.keymap.set('n', '<leader>qq', '<cmd>:q!<CR>')
-vim.keymap.set('n', '<C-e>', '<cmd>:Ex<CR>')
+vim.keymap.set('n', '<S-e>', '<cmd>:Ex<CR>')
 
 -- Set highlight on search, but clear on pressing <Esc> in normal mode
 vim.opt.hlsearch = true
@@ -197,6 +197,49 @@ require('lazy').setup({
     keys = {
       { '<leader>lg', '<cmd>LazyGit<cr>', desc = 'LazyGit' },
     },
+  },
+
+  {
+    'ThePrimeagen/harpoon',
+    branch = 'harpoon2',
+    dependencies = { 'nvim-lua/plenary.nvim' },
+    config = function()
+      local harpoon = require 'harpoon'
+
+      harpoon:setup()
+
+      vim.keymap.set('n', '<leader>a', function()
+        harpoon:list():add()
+      end)
+      vim.keymap.set('n', '<C-e>', function()
+        harpoon.ui:toggle_quick_menu(harpoon:list())
+      end)
+
+      vim.keymap.set('n', '<C-h>', function()
+        harpoon:list():select(1)
+      end)
+      vim.keymap.set('n', '<C-t>', function()
+        harpoon:list():select(2)
+      end)
+      vim.keymap.set('n', '<C-n>', function()
+        harpoon:list():select(3)
+      end)
+      vim.keymap.set('n', '<C-s>', function()
+        harpoon:list():select(4)
+      end)
+      vim.keymap.set('n', '<leader><C-h>', function()
+        harpoon:list():replace_at(1)
+      end)
+      vim.keymap.set('n', '<leader><C-t>', function()
+        harpoon:list():replace_at(2)
+      end)
+      vim.keymap.set('n', '<leader><C-n>', function()
+        harpoon:list():replace_at(3)
+      end)
+      vim.keymap.set('n', '<leader><C-s>', function()
+        harpoon:list():replace_at(4)
+      end)
+    end,
   },
 
   -- NOTE: Plugins can also be added by using a table,
